@@ -15,8 +15,8 @@
     <main>
         <div class="User-head">
             <form action="/addUsers" method="post" name="a-form" enctype="multipart/form-data">
-                上传文件：<input type="file" name="file" id="Attachment-file">
-                <input class="Submit" type="submit" value="提交">
+                上传文件：<input type="file" name="file" id="up_file">
+                <input class="Submit" type="button" value="提交" id="sub_btn">
             </form>
         </div>
         <table class="User-table">
@@ -65,6 +65,24 @@
 
                     $('#body-list').empty().append(list);
                 }
+            });
+
+            $('#sub_btn').click(() => {
+                var formData = new FormData();
+                formData.append('file', $('#up_file').get(0).files[0]);
+
+                $.ajax({
+                    url: '/addUsers',
+                    type: 'POST',
+                    data: formData,
+                    async : true,
+                    processData : false, // 告诉jQuery不要去处理发送的数据
+                    contentType : false, // 告诉jQuery不要去设置Content-Type请求头
+                    mimeType: "multipart/form-data",
+                    success: function (resp) {
+                        alert("上传成功");
+                    }
+                });
             });
         });
     </script>

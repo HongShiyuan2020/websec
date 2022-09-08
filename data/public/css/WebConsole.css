@@ -6,16 +6,17 @@
 
 .content-left {
     width: 20%;
-    height: 700px;
+    height: 100vh;
     background-color: #1c232f;
     float: left;
 }
 
 .content-right {
     width: 80%;
-    height: 700px;
+    height: 100vh;
     background-color:white;
     float: left;
+    overflow: hidden;
 }
 
 .left-title {

@@ -15,16 +15,16 @@
     </header>
     <main>
         <div class="MessageGeneration-form">
-            <form action="/addStrategy" style="display: block;padding: 20px 0px" method="post" enctype ="multipart/form-data" id="fd">
-                策略名称:<input type="text" name="name">
+            <form style="display: block;padding: 20px 0px" method="post" enctype ="multipart/form-data" id="fd">
+                策略名称:<input type="text" name="name" id="s_name">
                 <br><br>
                 用户组:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <select name="MailTemplate" id="ut">
+                    <select name="MailTemplate" id="ut" >
                     </select>
                 <br><br>
-                映射:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="file" name="file">
+                映射:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="file" name="file" id="file_up">
                 <br><br>
-                <input class="strategy2-button" type="submit" value="确定" style="width: 200px; height:50px"/>
+                <input class="strategy2-button" type="button" value="确定" style="width: 200px; height:50px" id="sub-btn"/>
                 <input class="strategy2-button" id="strategy2-button" type="button" value="取消" style="width: 200px; height:50px"/>
             </form>
           
@@ -46,7 +46,35 @@
             });
         });
         
-  
+        $('#sub-btn').click(() => {
+            var name = $("#s_name").val();
+            var user_g = $('#ut').val();
+
+            var formData = new FormData();
+            var fileInput = $('#file_up').get(0).files[0];
+            formData.append("file", fileInput);
+            // var parms = {
+            //     name: name,
+            //     user_g: user_g
+            // }
+
+            // formData.append('params', JSON.stringify(parms));
+            formData.append('name', name);
+            formData.append('user_g', user_g);
+
+            $.ajax({
+                    url: '/addStrategy',
+                    type: 'POST',
+                    data: formData,
+                    async : true,
+                    processData : false, // 告诉jQuery不要去处理发送的数据
+                    contentType : false, // 告诉jQuery不要去设置Content-Type请求头
+                    mimeType: "multipart/form-data",
+                    success: function (resp) {
+                        alert("上传成功");
+                    }
+            });
+        });
     </script>
 </body>
 

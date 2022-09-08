@@ -39,7 +39,7 @@ function makeRouter(strategyName) {
 function makeRoutersByDir(pageTodo) {
     let pagedirs = fs.readdirSync(path.join(__dirname, pagePath));
     let routers = pagedirs.map(page => {
-        return express.Router().all("/"+page, pageTodo);
+        return express.Router().all("/"+page.substring(0, page.lastIndexOf(".")), pageTodo);
     });
 
     return routers;
@@ -60,6 +60,7 @@ function Routers() {
 
     return routers;
 }
+
 
 // loadURLS(path.join(__dirname, "../data/strategy/test.json"));
 module.exports = {
