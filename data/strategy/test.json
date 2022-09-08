@@ -1,0 +1,28 @@
+{
+    "id": "test-strategy",
+    "used_mail_box": {
+        "from":"test",
+        "name": "test"
+    },
+    "used_users": "test",
+    "position_to_mail": [
+        {
+            "subject": "Test",
+            "template": "test.html",
+            "attachment": "test.html",
+            "url": "test"
+        },
+        {
+            "subject": "test",
+            "template": "test.html",
+            "attachment": "test.html",
+            "url": "test_p"
+        },
+        {
+            "subject": "Gao",
+            "template": "test.html",
+            "attachment": "test.html",
+            "url": "test"
+        }
+    ]
+}

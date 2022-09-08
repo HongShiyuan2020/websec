@@ -1,0 +1,42 @@
+.User-head{
+    height: 40px; 
+}
+
+.User-table{
+    width: 100%;
+    height: 200px;
+    border-collapse:collapse;
+}
+
+.User-table thead tr td{
+    background-color:wheat;
+}
+
+.User-table tr td{
+    border-bottom:1px solid #dedede;
+    text-align: center;
+}
+
+.User-table td button{
+    display: inline-block;
+    margin: auto 5px;
+}
+
+.User-button{
+    display: block;
+    margin: 40px auto;
+    width: 270px;
+	height: 40px;
+	border-width: 0px; 
+	border-radius: 3px; 
+	background: #1E90FF; 
+	cursor: pointer; 
+	outline: none;
+	font-family: Microsoft YaHei;
+	color: white; 
+	font-size: 17px;
+}
+
+.User-button:hover{
+    background: #5599FF;
+}

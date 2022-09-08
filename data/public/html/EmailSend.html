@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/EmailSend.css">
+</head>
+
+<body>
+    <header>
+        <h1>邮件发送</h1>
+    </header>
+    <main>
+        <button class="EmailSend-button">刷新</button>
+        <button class="EmailSend-button">发送</button>
+        <div class="EmailSend-head">
+            <form action="">
+                策略选择:<select name="Strategy-Select">
+                    <option value="">策略一</option>
+                    <option value="">策略二</option>
+                    <option value="">策略三</option>
+                </select>
+            </form>
+        </div>
+        <table class="EmailSend-table">
+            <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>姓名</td>
+                    <td>模板</td>
+                    <td>e-mail</td>
+                    <td>状态</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>员工1</td>
+                    <td>核对公司信息</td>
+                    <td>123456789@qq.com</td>
+                    <td><input type="checkbox" name="Send-box"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>员工2</td>
+                    <td>更新个人信息</td>
+                    <td>123456789@qq.com</td>
+                    <td><input type="checkbox" name="Send-box"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>员工3</td>
+                    <td>异常行为登录警告</td>
+                    <td>123456789@qq.com</td>
+                    <td><input type="checkbox" name="Send-box"></td>
+                </tr>
+            </tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>

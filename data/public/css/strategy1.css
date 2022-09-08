@@ -1,0 +1,38 @@
+.strategy1-table{
+    width: 100%;
+    height: 200px;
+    border-collapse:collapse;
+}
+
+.strategy1-table thead tr td{
+    background-color:wheat;
+}
+
+.strategy1-table tr td{
+    border-bottom:1px solid #dedede;
+    text-align: center;
+}
+
+.strategy1-table td button{
+    display: inline-block;
+    margin: auto 5px;
+}
+
+.strategy1-button{
+    display: block;
+    margin: 40px auto;
+    width: 270px;
+	height: 40px;
+	border-width: 0px; 
+	border-radius: 3px; 
+	background: #1E90FF; 
+	cursor: pointer; 
+	outline: none;
+	font-family: Microsoft YaHei;
+	color: white; 
+	font-size: 17px;
+}
+
+.strategy1-button:hover{
+    background: #5599FF;
+}

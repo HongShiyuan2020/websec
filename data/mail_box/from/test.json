@@ -1,0 +1,9 @@
+{
+    "host": "smtp.qq.com",
+    "port": 465,
+    "secure": true,
+    "auth": {
+        "user": "1850456500@qq.com",
+        "pass": "xjuaugmqhxhhdhda"
+    }
+}

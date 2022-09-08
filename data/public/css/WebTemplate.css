@@ -1,0 +1,23 @@
+.WebTemplate-head {
+    height: 40px; 
+}
+
+.WebTemplate-table{
+    width: 100%;
+    height: 200px;
+    border-collapse:collapse;
+}
+
+.WebTemplate-table thead tr td{
+    background-color:wheat;
+}
+
+.WebTemplate-table tr td{
+    border-bottom:1px solid #dedede;
+    text-align: center;
+}
+
+.WebTemplate-table td button{
+    display: inline-block;
+    margin: auto 5px;
+}

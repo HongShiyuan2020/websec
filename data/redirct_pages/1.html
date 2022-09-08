@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重定向...</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+    <h1>请稍等...</h1>
+    <script>
+        var PA = '$t$';
+        setTimeout(() => {
+            $.ajax({
+                url: "/redirectToDo?" + PA + "&type=q",
+                success: (res) => {
+
+                }
+            });
+        }, 5 * 1000);
+    </script>
+</body>
+</html>

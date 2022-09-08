@@ -1,0 +1,33 @@
+.DataProcessing-table{
+    width: 100%;
+    height: 200px;
+    border-collapse:collapse;
+}
+
+.DataProcessing-table thead tr td{
+    background-color:wheat;
+}
+
+.DataProcessing-table tr td{
+    border-bottom:1px solid #dedede;
+    text-align: center;
+}
+.DataProcessing-button{
+    float: right;
+    display: block;
+    margin: 10px 10px;
+    width: 270px;
+	height: 40px;
+	border-width: 0px; 
+	border-radius: 3px; 
+	background: #1E90FF; 
+	cursor: pointer; 
+	outline: none;
+	font-family: Microsoft YaHei;
+	color: white; 
+	font-size: 17px;
+}
+
+.DataProcessing-button:hover{
+    background: #5599FF;
+}

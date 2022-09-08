@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>策略组2</title>
+    <!-- <link rel="stylesheet" href="../css/MessageGeneration.css"> -->
+</head>
+
+<body>
+    <header>
+        <h1>策略组</h1>
+    </header>
+    <main>
+        <div class="MessageGeneration-form">
+            <form action="/addStrategy" style="display: block;padding: 20px 0px" method="post" enctype ="multipart/form-data" id="fd">
+                策略名称:<input type="text" name="name">
+                <br><br>
+                用户组:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <select name="MailTemplate" id="ut">
+                    </select>
+                <br><br>
+                映射:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="file" name="file">
+                <br><br>
+                <input class="strategy2-button" type="submit" value="确定" style="width: 200px; height:50px"/>
+                <input class="strategy2-button" id="strategy2-button" type="button" value="取消" style="width: 200px; height:50px"/>
+            </form>
+          
+        </div>
+    </main>
+    <footer>
+    </footer>
+
+    <script>
+        $(document).ready(() => {
+            $("#strategy2-button").click(function(){
+		        $("#content-right").load("../html/strategy1.html");
+	        });
+            $.ajax({
+                url: '/getdata?type=q&',
+                success: (res) => {
+                        $("#ut").empty().append(res.map((e) => ' <option value="'+ e +'">'+ e +'</option>'));
+                    }
+            });
+        });
+        
+  
+    </script>
+</body>
+
+</html>

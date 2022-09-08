@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户组</title>
+    <link rel="stylesheet" href="../css/User.css">
+</head>
+<body>
+    <header>
+        <h1>用户组</h1>
+    </header>
+
+    <main>
+        <div class="User-head">
+            <form action="/addUsers" method="post" name="a-form" enctype="multipart/form-data">
+                上传文件：<input type="file" name="file" id="Attachment-file">
+                <input class="Submit" type="submit" value="提交">
+            </form>
+        </div>
+        <table class="User-table">
+            <thead>
+                <tr>
+                    <td>
+                        序号
+                    </td>
+
+                    <td>
+                        用户组
+                    </td>
+
+                    <td>
+                        人数
+                    </td>
+
+                    <td>
+                        操作
+                    </td>
+                </tr>
+            </thead>
+            <tbody id="body-list">
+        
+            </tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script>
+        var template = '<tr> <td> $idx$ </td> <td> $name$ </td> <td> $num$ </td> <td> <button href="#">编辑</a> <button href="#">删除</a> </td> </tr>';
+
+        $(document).ready(function(){
+            $.ajax({
+                url: '/getdata?type=u',
+                success: (res) => {
+                    var list = res.map((e, idx) => {
+                        return template.replace('$idx$', idx+1).replace('$name$', e.name).replace('$num$', e.num);
+                    });
+
+                    $('#body-list').empty().append(list);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

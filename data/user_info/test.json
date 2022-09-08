@@ -1,0 +1,19 @@
+{
+    "user_num": 2,
+    "info_id": "test-info",
+    "position_to_idx": ["student", "teacher", "other"],
+    "data":[
+        {
+            "Email": "hongshiyuan2020@163.com",
+            "position": 0
+        },
+        {
+            "Email": "hongshiyuan2020@outlook.com",
+            "position": 1
+        },
+        {
+            "Email": "2096397627@qq.com",
+            "position": 2
+        }
+    ]
+}

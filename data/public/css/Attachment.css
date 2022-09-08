@@ -1,0 +1,23 @@
+.Attachment-head {
+    height: 40px; 
+}
+
+.Attachment-table{
+    width: 100%;
+    height: 200px;
+    border-collapse:collapse;
+}
+
+.Attachment-table thead tr td{
+    background-color:wheat;
+}
+
+.Attachment-table tr td{
+    border-bottom:1px solid #dedede;
+    text-align: center;
+}
+
+.Attachment-table td button{
+    display: inline-block;
+    margin: auto 5px;
+}

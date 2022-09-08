@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>映射</title>
+    <link rel="stylesheet" href="../css/MailTemplate.css">
+</head>
+
+<body>
+    <header>
+        <h1>映射</h1>
+    </header>
+    <main>
+        <div class="MailTemplate-head">
+            <form action="">
+                上传文件：<input type="file" name="MailTemplate-file" id="MailTemplate-file">
+                <button class="Submit">提交</button>
+            </form>
+        </div>
+        <table class="MailTemplate-table">
+            <thead>
+                <tr>
+                    <td>
+                        序号
+                    </td>
+
+                    <td>
+                        映射名称
+                    </td>
+
+                    <td>
+                        操作
+                    </td>
+                </tr>
+            </thead>
+            <tbody id="body-list">
+            
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+        </div>
+    </main>
+    <footer>
+    </footer>
+
+    <script>
+        var template = '<tr> <td> $idx$ </td> <td> $name$ </td> <td> <button href="#">编辑</a> <button href="#">删除</a> </td> </tr>';
+
+        $(document).ready(function(){
+            $.ajax({
+                url: '/getdata?type=p',
+                success: (res) => {
+                    var list = res.map((e, idx) => {
+                        return template.replace('$idx$', idx+1).replace('$name$', e);
+                    });
+
+                    $('#body-list').empty().append(list);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+.MessageGeneration-form{
+    width: 400px;
+    margin: 0px auto;
+}
+
+.MessageGeneration-form select{
+    width: 200px;
+    height: 30px;
+    margin-left: 60px;
+}
+
+.MessageGeneration-form input{
+    width: 200px;
+    height: 24px;
+    margin-left: 80px;
+}
+
+.strategy2-button{
+    display: block;
+    margin: 10px auto;
+    width: 270px;
+	height: 40px;
+	border-width: 0px;
+	border-radius: 3px;
+	background: #1E90FF;
+	cursor: pointer;
+	outline: none;
+	font-family: Microsoft YaHei;
+	color: white;
+	font-size: 17px;
+}
+
+.MessageGeneration-button:hover{
+    background: #5599FF;
+}
