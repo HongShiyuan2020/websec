@@ -5,11 +5,13 @@ const multer = require('multer');
 
 const {getDataRouter} = require('./GetData');
 const {uploadRouters} = require('./UploadFiles');
+const {sendEmailRouter} = require('./SendMailRouter');
 
 var app = express();
 
 app.use(express.static("./data/public"));
 app.use('/', getDataRouter);
+app.use('/', sendEmailRouter);
 
 for (const router of uploadRouters) {
     app.use('/', router);
