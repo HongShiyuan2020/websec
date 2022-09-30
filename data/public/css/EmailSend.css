@@ -4,8 +4,9 @@
 
 .EmailSend-table {
     width: 100%;
-    height: 200px;
+    height: 60vh;
     border-collapse:collapse;
+    overflow: scroll;
 }
 
 .EmailSend-table thead tr td{
@@ -35,4 +36,10 @@
 
 .EmailSend-button:hover{
     background: #5599FF;
+}
+
+.email-table {
+    width: 100%;
+    height: 60vh;
+    overflow: scroll;
 }

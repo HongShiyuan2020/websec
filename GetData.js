@@ -5,7 +5,6 @@ const fs = require('fs');
 var router = express.Router();
 
 router.all('/getdata', (req, res) => {
-    console.log("rep");
     let type = req.query['type'];
     switch (type) {
         case 'a':
@@ -21,13 +20,6 @@ router.all('/getdata', (req, res) => {
         case 's':
             let files_s = fs.readdirSync(path.join(__dirname, 'data/strategy'));
             res.setHeader('content-type', 'test/json');
-            files_s = files_s.map((e) => {
-                let temp = JSON.parse(fs.readFileSync(path.join(__dirname, 'data/strategy', e).toString()));
-                return {
-                    name: temp.id,
-                    us: temp.used_users
-                };
-            });
             res.send(JSON.stringify(files_s));
             break;
         case 'u':

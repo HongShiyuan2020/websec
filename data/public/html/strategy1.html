@@ -21,9 +21,9 @@
                     <td>
                         名称
                     </td>
-                    <td>
+                    <!-- <td>
                         用户组
-                    </td>
+                    </td> -->
                     <td>
                         操作
                     </td>
@@ -45,7 +45,7 @@
     </footer>
 
     <script>
-        var template = '<tr> <td> $idx$ </td> <td> $name$ </td> <td> $us$ </td> <td> <button href="#">编辑</a> <button href="#">删除</a> </td> </tr>';
+        var template = '<tr> <td> $idx$ </td> <td> $name$ </td> <td> <button href="#">编辑</a> <button href="#">删除</a> </td> </tr>';
 
         $(document).ready(function(){
             setTimeout(() => {
@@ -53,7 +53,7 @@
                 url: '/getdata?type=s',
                 success: (res) => {
                     var list = res.map((e, idx) => {
-                        return template.replace('$idx$', idx+1).replace('$name$', e.name).replace('$us$', e.us);
+                        return template.replace('$idx$', idx+1).replace('$name$', e);
                     });
 
                     $('#body-list').empty().append(list);

@@ -4,6 +4,8 @@ const fs = require('fs');
 
 const {makeEmails} = require('./MakeMail');
 
+var sendNums = 0;
+
 function sendMail(fromBox, mailOpt) {
     let transporter = nodemailer.createTransport(fromBox);
     transporter.sendMail(mailOpt, (err, info) => {
@@ -18,15 +20,17 @@ function sendMail(fromBox, mailOpt) {
 
 function sendMails(strategy) {
     let opt = makeEmails(strategy);
-    
+    sendNums = 0;
     for (const mail in opt.to) {
         sendMail(opt.from, opt.to[mail]);
         console.log("ok");
+        sendNums += 1;
     }
 }
 
-sendMails("test.json");
+// sendMails("test.json");
 
 module.exports = {
-    send: sendMails
+    send: sendMails,
+    sendNums: sendNums
 }

@@ -14,59 +14,109 @@
         <h1>邮件发送</h1>
     </header>
     <main>
-        <button class="EmailSend-button">刷新</button>
-        <button class="EmailSend-button">发送</button>
+        <button class="EmailSend-button" id="fresh-btn">刷新</button>
+        <button class="EmailSend-button" id="send-btn">发送</button>
         <div class="EmailSend-head">
             <form action="">
-                策略选择:<select name="Strategy-Select">
-                    <option value="">策略一</option>
-                    <option value="">策略二</option>
-                    <option value="">策略三</option>
+                策略选择:<select name="Strategy-Select" id="strategy-sec">
                 </select>
             </form>
         </div>
-        <table class="EmailSend-table">
-            <thead>
-                <tr>
-                    <td>序号</td>
-                    <td>姓名</td>
-                    <td>模板</td>
-                    <td>e-mail</td>
-                    <td>状态</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>员工1</td>
-                    <td>核对公司信息</td>
-                    <td>123456789@qq.com</td>
-                    <td><input type="checkbox" name="Send-box"></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>员工2</td>
-                    <td>更新个人信息</td>
-                    <td>123456789@qq.com</td>
-                    <td><input type="checkbox" name="Send-box"></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>员工3</td>
-                    <td>异常行为登录警告</td>
-                    <td>123456789@qq.com</td>
-                    <td><input type="checkbox" name="Send-box"></td>
-                </tr>
-            </tbody>
-            <tfoot>
-
-            </tfoot>
-        </table>
+        <div class="email-table">
+            <table class="EmailSend-table">
+                <thead>
+                    <tr>
+                        <td>序号</td>
+                        <td>姓名</td>
+                        <td>模板</td>
+                        <td>e-mail</td>
+                        <td>状态</td>
+                    </tr>
+                </thead>
+                <tbody id="table-by">
+                    
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+        
     </main>
 
     <footer>
 
     </footer>
+
+    <script>
+        var strgy;
+        var Num = 0;
+        var usera = {};
+        $(document).ready(() => {
+            $.ajax({
+                url: '/getdata?type=s',
+                success: (res) => {
+                    list = res.map((e) => {
+                        return `<option value="${e}">${e}</option>`;
+                    });
+                    $('#strategy-sec').empty().append(list);
+                    strgy = $("#strategy-sec").val();
+                }
+            });
+
+            $("#strategy-sec").change(() => {
+                strgy =  $("#strategy-sec").val();
+            })
+
+            $("#fresh-btn").click(() => {
+                $.ajax({
+                url: '/sendmail?ac=fresh',
+                success: (res) => {
+                    let nowNum = JSON.parse(res)['num'];
+                    let p2 = usera['p2'];
+                    let usr = usera['usr']['data'];
+                    let resN = usr.map((e, idx) => {
+                        let infoSend = "发送中";
+                        if(idx <= idx) infoSend = "已发送";
+                        return `<tr>
+                        <td>${idx+1}</td>
+                        <td>${usera['usr']['position_to_idx'][e['position']]}</td>
+                        <td>${p2[e['position']]['template']}</td>
+                        <td>${e['Email']}</td>
+                        <td>${infoSend}</td>
+                        </tr>
+                        `
+                    });
+                    $('#table-by').empty().append(resN);
+                }
+            });
+            });
+
+            $("#send-btn").click(() => {
+                $.ajax({
+                    url: `/sendmail?ac=send&strgy=${strgy}`,
+                    success: (res) => {
+                        res = JSON.parse(res);
+                        usera = res;
+                        Num = res['usr']['user_num']
+                        let p2 = res['p2'];
+                        let usr = res['usr']['data'];
+                        let resN = usr.map((e, idx) => {
+                            return `<tr>
+                            <td>${idx+1}</td>
+                            <td>${res['usr']['position_to_idx'][e['position']]}</td>
+                            <td>${p2[e['position']]['template']}</td>
+                            <td>${e['Email']}</td>
+                            <td>发送中</td>
+                            </tr>
+                            `
+                        });
+                        $('#table-by').empty().append(resN);
+                    }
+                });
+            });
+            
+        });
+    </script>  
 </body>
 
 </html>
