@@ -5,6 +5,7 @@ const qrcode = require('qrcode');
 
 const resDir = "../data/res";
 const webpageDir = "../data/webpage";
+const server = "127.0.0.1";
 
 function pageToDo01(req, res) {
     let mail = req.query['mail'];

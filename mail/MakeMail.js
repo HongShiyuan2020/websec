@@ -1,3 +1,4 @@
+const { randomUUID } = require('crypto');
 const fs = require('fs');
 const path = require('path');
 
@@ -34,11 +35,11 @@ function loadStrategy(StrategyPath){
     }
 }
 
-function loadHtml(htmlName, url, user, strategyId) {
+function loadHtml(htmlName, url, user, strategyId, uuid) {
     try {
         var html =  fs.readFileSync(path.join(__dirname, "../data/templates", htmlName)).toString();
-        html = html.replace(/<-url-><\/-url->/i,"\""+ server+ "/" + url + "?mail=" + user.Email + "&id="+ strategyId +"\"");
-        html = html.replace(/<-img-><\/-img->/i,"\""+ server+ "/openMail"  + "?mail=" + user.Email + "&id="+ strategyId +"&type=html\"");
+        html = html.replace(/<-url-><\/-url->/i,"\""+ server+ "/" + url + "?mail=" + user.Email + "_" + uuid + "&id="+ strategyId +"\"");
+        html = html.replace(/<-img-><\/-img->/i,"\""+ server+ "/openMail"  + "?mail=" + user.Email + "_" + uuid + "&id="+ strategyId +"&type=html\"");
         return html;
     } catch (error) {
         console.log(error);
@@ -46,11 +47,11 @@ function loadHtml(htmlName, url, user, strategyId) {
     }
 }
 
-function loadAttachment(name, url, user, strategyId) {
+function loadAttachment(name, url, user, strategyId, uuid) {
     try {
         var attachment =  fs.readFileSync(path.join(__dirname, "../data/attachments", name)).toString();
-        attachment = attachment.replace(/<-url-><\/-url->/i,"\""+ server+ "/" + url + "?mail=" + user.Email + "&id="+ strategyId +"\"");
-        attachment = attachment.replace(/<-img-><\/-img->/i,"\""+ server+ "/openAttachment"  + "?mail=" + user.Email + "&id="+ strategyId+"\"");
+        attachment = attachment.replace(/<-url-><\/-url->/i,"\""+ server+ "/" + url + "?mail=" + user.Email + "_" + uuid + "&id="+ strategyId +"\"");
+        attachment = attachment.replace(/<-img-><\/-img->/i,"\""+ server+ "/openAttachment"  + "?mail=" + user.Email + "_" + uuid + "&id="+ strategyId+"\"");
         return attachment;
     } catch (error) {
         console.log(error);
@@ -66,16 +67,18 @@ function makeEmails(strategy) {
         return null;
     }
 
+    var uuid = randomUUID();
+
     let mailTo = users.data.map(e => {
         let temp = {
             from: strategy.used_mail_box.name + "<" + fromBox.auth.user + ">",
             to: e.Email,
             subject: strategy.position_to_mail[e.position].subject,
-            html: loadHtml(strategy.position_to_mail[e.position].template, strategy.position_to_mail[e.position].url, e, strategy.id),
+            html: loadHtml(strategy.position_to_mail[e.position].template, strategy.position_to_mail[e.position].url, e, strategy.id, uuid),
             attachments: [
                 {
                     filename: strategy.position_to_mail[e.position].attachment,
-                    content: loadAttachment(strategy.position_to_mail[e.position].attachment, strategy.position_to_mail[e.position].url, e, strategy.id)
+                    content: loadAttachment(strategy.position_to_mail[e.position].attachment, strategy.position_to_mail[e.position].url, e, strategy.id, uuid)
                 }
             ]
         };

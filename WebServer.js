@@ -32,4 +32,3 @@ module.exports = {
     listen: listen,
     close: close
 }
-
